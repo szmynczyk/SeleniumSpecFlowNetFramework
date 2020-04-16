@@ -25,6 +25,13 @@ namespace SeleniumSpecFlowNetFramework.Steps
             driver.Navigate().GoToUrl(url);
         }
 
+        [Given(@"I Accept cookies")]
+        public void GivenIAcceptCookies()
+        {
+            driver.FindElement(By.CssSelector(".accept")).Click();
+        }
+
+
         [Given(@"I click on ""(.*)"" in menu")]
         public void GivenIClickOnInMenu(string menuItem)
         {
@@ -40,7 +47,13 @@ namespace SeleniumSpecFlowNetFramework.Steps
                     break;
                 case "Contact":
                     menuElements.First(x => x.Text == "Contact").Click();
-                    StringAssert.Contains(driver.Url, "/contact");
+                    Assert.True(driver.Url.Contains("/contact"));
+                    try
+                    {
+                        driver.FindElement(By.CssSelector(".bottom-sticky__ad-close-btn")).Click();
+                    }
+                    catch { }
+                    
                     break;
             }
         }
@@ -51,12 +64,12 @@ namespace SeleniumSpecFlowNetFramework.Steps
             var name = driver.FindElement(By.CssSelector("#g3-name"));
             var email = driver.FindElement(By.CssSelector("#g3-email"));
             var website = driver.FindElement(By.CssSelector("#g3-website"));
-            var comment = driver.FindElement(By.CssSelector("#g3-contact-form-comment-g3-comment"));
+            var comment = driver.FindElement(By.CssSelector("#contact-form-comment-g3-comment"));
             var submitButton = driver.FindElement(By.CssSelector(".pushbutton-wide"));
 
             name.SendKeys("name");
             email.SendKeys("email@testmail.com");
-            website.SendKeys("www.mysite.pl");
+            website.SendKeys("http://www.mywebsite.com");
             comment.SendKeys("some really helpful comment");
             submitButton.Click();
         }

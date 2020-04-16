@@ -22,7 +22,9 @@ namespace SeleniumSpecFlowNetFramework.Helpers
                     return new EdgeDriver();
                 case DriverType.Chrome:
                 default:
-                    return new ChromeDriver();
+                    var driver = new ChromeDriver();
+                    driver.Manage().Window.Maximize();
+                    return driver;
             }
         }
     }
