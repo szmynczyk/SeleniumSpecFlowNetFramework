@@ -123,11 +123,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\TestHook.cs" />
     <Compile Include="Steps\FirstFeatureSteps.cs" />
+    <Compile Include="Steps\LoginSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Feature\FirstFeature.feature">
       <LastGenOutput>FirstFeature.feature.cs</LastGenOutput>
     </None>
+    <None Include="Feature\Login.feature" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
